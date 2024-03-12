@@ -35,7 +35,9 @@ class Entries extends StatelessWidget {
                     decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(20)),
                   ),
+                  SizedBox(width: 20,),
                   Row(
+                    
                     children: [
                       Column(
                         children: [

@@ -47,7 +47,7 @@ class login extends StatelessWidget {
                   customTextField(
                     userFieldController: userNameController,
                     icon: Icons.person,
-                    hint: "enter gmail",
+                    hint: "enter username",
                   ),
                   const customText(label: "Password"),
                   customTextField(
@@ -63,7 +63,10 @@ class login extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      customButton(buttonLabel:"Login",action:gotoHome ,)
+                      customButton(buttonLabel:"Login",action:gotoHome,
+                      
+                  
+                      ),
                       // ElevatedButton(
                       //   onPressed: () {
                       //     Get.toNamed("/HomePage");

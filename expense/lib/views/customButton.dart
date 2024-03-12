@@ -18,22 +18,37 @@ class customButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-     
+    return Container(
+      decoration: BoxDecoration(
+                    //color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey.shade300,
+                          blurRadius: 40,
+                          spreadRadius: 10)
+                    ]),
+      child: MaterialButton(
+       
+        
+        onPressed: action,
+        //  print("Button clicked ${userNameController.text}");
+        color: primaryColor,
+        hoverColor: primaryColor,
+        height: 10,
       
-      onPressed: action,
-      //  print("Button clicked ${userNameController.text}");
-      color: primaryColor,
-      hoverColor: primaryColor,
-      child: customText(
-        label: buttonLabel,
-        labelColor: textColor,
-      
+        child: customText(
+          label: buttonLabel,
+          labelColor: textColor,
+          
+          
+        
+        ),
+        //backgroundColor: primaryColor,
+        elevation: 10,
+        padding: const EdgeInsets.all(20),
+        
       ),
-
-      //backgroundColor: primaryColor,
-      elevation: 10,
-      padding: const EdgeInsets.all(20),
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:expense/configs/constants.dart';
 import 'package:expense/views/customButton.dart';
-//import 'package:expense/views/customButton.dart';
 import 'package:expense/views/customText.dart';
 import 'package:expense/views/customTextField.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +11,8 @@ class RegistrationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController firstNameController = TextEditingController();
-    TextEditingController secondNameController = TextEditingController();
+    TextEditingController userNameController= TextEditingController();
+    
     TextEditingController phoneNumberController = TextEditingController();
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
@@ -29,7 +28,7 @@ class RegistrationPage extends StatelessWidget {
             child: Container(
               height: 700,
               width: 900,
-              padding: const EdgeInsets.all(50.0),
+              padding: const EdgeInsets.all(20.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30.0),
                 color: Colors.white,
@@ -45,44 +44,41 @@ class RegistrationPage extends StatelessWidget {
                         children: [
                           customText(
                             label: "REGISTER HERE",
+                            
                             labelColor: primaryColor,
                             fontSize: 30,
                           ),
                         ],
                       ),
-                    ),
+                    ),customText(label: "Username"),
                     customTextField(
-                      userFieldController: firstNameController,
-                      hint: "Enter First Name",
+                      userFieldController: userNameController,
+                      hint: "Username",
                       icon: Icons.person,
                     ),
+                    
                     SizedBox(
-                      height: 20,
+                      height: 15,
                     ),
-                    customTextField(
-                      userFieldController: secondNameController,
-                      hint: "Enter Second Name",
-                      icon: Icons.person,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    customText(label: "Phone Number"),
                     customTextField(
                       userFieldController: phoneNumberController,
                       hint: "Enter Phone Number",
                       icon: Icons.phone,
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 15,
                     ),
+                      customText(label: "Email"),
                     customTextField(
                       userFieldController: emailController,
                       hint: "Enter Email",
                       icon: Icons.email,
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 15,
                     ),
+                      customText(label: "Password"),
                     customTextField(
                       userFieldController: passwordController,
                       hint: "Enter Password",
@@ -90,8 +86,9 @@ class RegistrationPage extends StatelessWidget {
                       icon: Icons.lock,
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 15,
                     ),
+                      customText(label: "Re-enter Password"),
                     customTextField(
                       userFieldController: re_enterPasswordController,
                       hint: "Re-enter Password",
@@ -99,7 +96,7 @@ class RegistrationPage extends StatelessWidget {
                       icon: Icons.lock,
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 15,
                     ),
                     /*Row(
                     mainAxisAlignment: MainAxisAlignment.center,
