@@ -13,6 +13,6 @@ class Routes {
     GetPage(name: "/homepage", page: () => HomePage()),
     GetPage(name: "/categories", page: () => CategoriesPage()),
     GetPage(name: "/settings", page: () => SettingsPage()),
-    GetPage(name: "/account", page: () =>ProfileScreen()),
+    GetPage(name: "/account", page: () =>ProfilePage()),
   ];
 }

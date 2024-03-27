@@ -13,11 +13,11 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
        backgroundColor: primaryColor.withOpacity(0.8),
-        leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-            ),
-            onPressed: () => Get.toNamed("/homepage")),
+        // leading: IconButton(
+        //     icon: Icon(
+        //       Icons.arrow_back,
+        //     ),
+        //     onPressed: () => Get.toNamed("/homepage")),
         automaticallyImplyLeading: true,
       ),
       body: Padding(
@@ -121,7 +121,8 @@ class SettingsPage extends StatelessWidget {
                Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                  children: [
-                   customButton(
+                   CustomButton(
+                    
                     buttonLabel: "SIGN OUT",
                     action: gotoLogin,
                                  ),

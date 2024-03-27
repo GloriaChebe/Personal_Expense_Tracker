@@ -7,19 +7,19 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor.withOpacity(0.8),
-        leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-            ),
-            onPressed: () => Get.toNamed("/homepage")),
+        // leading: IconButton(
+        //     icon: Icon(
+        //       Icons.arrow_back,
+        //     ),
+        //     onPressed: () => Get.toNamed("/homepage")),
         automaticallyImplyLeading: true,
       ),
       body: Padding(
@@ -37,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
             itemProfile('Phone', '0745881266', CupertinoIcons.phone),
             const SizedBox(height: 10),
             itemProfile(
-                'Address', 'Nairobi city', CupertinoIcons.location),
+                'Address', '116, kericho', CupertinoIcons.location),
             const SizedBox(height: 10),
             itemProfile(
                 'Email', 'gloriachebet024@gmail.com', CupertinoIcons.mail),
@@ -53,7 +53,7 @@ class ProfileScreen extends StatelessWidget {
                     backgroundColor: primaryColor,
                     
                   ),
-                  child: customText(label: 'Edit Profile')),
+                  child: customText(label: 'Edit Profile',labelColor: appwhiteColor,)),
             )
           ],
         ),

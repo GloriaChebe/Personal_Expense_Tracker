@@ -20,7 +20,7 @@ class PressedPage extends StatelessWidget {
         //height: 400,
         //width: 200,
         child: Padding(
-          padding: const EdgeInsets.all(100.0),
+          padding: const EdgeInsets.all(40.0),
           child: Column(
             children: [
               customText
@@ -48,7 +48,7 @@ class PressedPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
                children: [
                  ElevatedButton(onPressed: (){}, child: Text("Save")),
-                 SizedBox(width: 100,),
+                 SizedBox(width: 50,),
                  ElevatedButton(onPressed: (){}, child: Text("Cancel")),
                ],
              )

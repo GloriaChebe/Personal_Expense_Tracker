@@ -1,22 +1,27 @@
+import 'dart:convert';
+
 import 'package:expense/configs/constants.dart';
 import 'package:expense/views/customButton.dart';
 import 'package:expense/views/customText.dart';
 import 'package:expense/views/customTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:http/http.dart'as http;
+
+    TextEditingController userNameController= TextEditingController();
+    TextEditingController phoneNumberController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
+     TextEditingController addressController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+    TextEditingController re_enterPasswordController = TextEditingController();
 
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController userNameController= TextEditingController();
     
-    TextEditingController phoneNumberController = TextEditingController();
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    TextEditingController re_enterPasswordController = TextEditingController();
+   
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -39,18 +44,24 @@ class RegistrationPage extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(20.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          customText(
-                            label: "REGISTER HERE",
-                            
-                            labelColor: primaryColor,
-                            fontSize: 30,
-                          ),
-                        ],
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                             
+                                 Image.asset("images/logo.png",height: 120,),
+                               
+                        customText(
+                              label: "REGISTER HERE!",
+                              
+                              labelColor: primaryColor,
+                              fontSize: 30,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),customText(label: "Username"),
+                    ),
+                    //customText(label: "Username"),
                     customTextField(
                       userFieldController: userNameController,
                       hint: "Username",
@@ -60,7 +71,7 @@ class RegistrationPage extends StatelessWidget {
                     SizedBox(
                       height: 15,
                     ),
-                    customText(label: "Phone Number"),
+                    //customText(label: "Phone Number"),
                     customTextField(
                       userFieldController: phoneNumberController,
                       hint: "Enter Phone Number",
@@ -69,7 +80,7 @@ class RegistrationPage extends StatelessWidget {
                     SizedBox(
                       height: 15,
                     ),
-                      customText(label: "Email"),
+                     // customText(label: "Email"),
                     customTextField(
                       userFieldController: emailController,
                       hint: "Enter Email",
@@ -78,7 +89,17 @@ class RegistrationPage extends StatelessWidget {
                     SizedBox(
                       height: 15,
                     ),
-                      customText(label: "Password"),
+                      //customText(label: "Address"),
+                    customTextField(
+                      userFieldController: addressController,
+                      hint:"Address ie(116,Kericho)",
+                      hideText: true,
+                      icon: Icons.location_city,
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                      //customText(label: "Password"),
                     customTextField(
                       userFieldController: passwordController,
                       hint: "Enter Password",
@@ -88,7 +109,7 @@ class RegistrationPage extends StatelessWidget {
                     SizedBox(
                       height: 15,
                     ),
-                      customText(label: "Re-enter Password"),
+                      //customText(label: "Re-enter Password"),
                     customTextField(
                       userFieldController: re_enterPasswordController,
                       hint: "Re-enter Password",
@@ -98,19 +119,14 @@ class RegistrationPage extends StatelessWidget {
                     SizedBox(
                       height: 15,
                     ),
-                    /*Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      customButton(
-                        buttonLabel: 'Sign Up',
-                        color: primaryColor,
-                      ),
-                    ],
-                  ),*/
+                   
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        customButton(buttonLabel: "Register",action:gotoLogin,)
+                        CustomButton(buttonLabel: "Register",action:(){
+                          serverSignup();
+                          //gotoLogin();
+                        })
                         /*ElevatedButton(
                           onPressed: () {
                             //Get.toNamed("/RegistrationScreen");
@@ -157,5 +173,28 @@ class RegistrationPage extends StatelessWidget {
    void gotoLogin() {
     Get.offAllNamed("/login");
   }
-  
+  Future<void> serverSignup() async {
+    http.Response response;
+    var body={
+      'userName': userNameController.text.trim(),
+      'phoneNo': phoneNumberController.text.trim(),
+      'email': emailController.text.trim(),
+      'address': addressController.text.trim(),
+      'password':passwordController.text.trim(),
+};
+    response = await http.post(
+      Uri.parse("https://sanerylgloann.co.ke/ExpenseEase/createUsers.php"),
+      body: body,
+    );
+    print(response.body);
+    if (response.statusCode == 200) {
+      var serverResponse = json.decode(response.body);
+      int signedUp=serverResponse['success'];
+      
+      if (signedUp == 1) {
+      gotoLogin() ;
+      } 
+    }
+}
+ 
 }

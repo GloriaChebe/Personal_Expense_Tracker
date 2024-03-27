@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
     Home(),
     CategoriesPage(),
     SettingsPage(),
-    ProfileScreen(),
+    ProfilePage(),
   ];
 
   @override
@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
       body: Obx(() => screens[homeController.selectedPage.value]),
       bottomNavigationBar: GNav(
         color: primaryColor,
-        backgroundColor: primaryColor.withOpacity(0.08),
+        backgroundColor: primaryColor.withOpacity(0.2),
         tabBackgroundColor: primaryColor.withOpacity(0.5),
         tabs: [
           GButton(
