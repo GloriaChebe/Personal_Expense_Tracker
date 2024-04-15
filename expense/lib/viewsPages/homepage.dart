@@ -1,10 +1,16 @@
+import 'dart:convert';
+
 import 'package:expense/configs/constants.dart';
+import 'package:expense/controllers/entriesController.dart';
+import 'package:expense/models/entriesModel.dart';
 import 'package:expense/views/barCharts.dart';
 import 'package:expense/views/customEntries.dart';
 import 'package:expense/views/customText.dart';
 import 'package:expense/viewsPages/onPressed.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import 'package:http/http.dart'as http;
+EntriesController entriesController=Get.put(EntriesController());
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -72,7 +78,7 @@ class Home extends StatelessWidget {
            
             Entries(
               imageUrl: "images/cloth.png",
-              titleText: "CLOTHES",
+              titleText:"CLOTHES",
               subTitleText: "Tshirt",
               amount: 750,
               
@@ -119,5 +125,17 @@ class Home extends StatelessWidget {
         child: Icon(Icons.add),
       ),
     );
+  }
+   Future<void>getEntries()async{
+    http.Response response;
+       response=await http.get(Uri.parse("https://sanerylgloann.co.ke/ExpenseEase/readEntries.php"));
+    if (response.statusCode==200){
+    var serverResponse=json.decode(response.body);
+    var entriesStatus=serverResponse['success'];
+    var entrieslist=entriesStatus.Map((entries)=>Categori.fromJson(entries)).toList();
+    entriesController.updateEntriesList(entrieslist);}
+    else{
+      print("server error&{response.statusCode}");
+    }
   }
 }
