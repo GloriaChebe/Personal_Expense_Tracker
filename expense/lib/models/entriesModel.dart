@@ -1,12 +1,24 @@
-class Categori {
-  var image;
-  var categoryName;
-  var item;
-  var amount;
+class Entry {
+  final String image;
+  final String categoryName;
+  final String item;
+  final String amount;
 
-  Categori({required this.image, required this.categoryName, required this.item,required this.amount});
+  Entry({
+    required this.image,
+    required this.categoryName,
+    required this.item,
+    required this.amount,
+  });
 
-  factory Categori.fromJson(Map<String, dynamic> json) {
-    return Categori(image: json['image'], categoryName: json['category'], item: json['item'],amount: json['amount']);
+  factory Entry.fromJson(Map<String, dynamic> json) {
+    return Entry(
+      image: json['image'],
+      categoryName: json['categoryName'],
+      item: json['item'],
+      amount: json['amount'],
+    );
   }
 }
+
+

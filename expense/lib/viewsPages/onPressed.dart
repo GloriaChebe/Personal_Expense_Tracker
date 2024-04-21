@@ -14,7 +14,7 @@ final Map<String, int> categoryToIdMap = {
   'CLOTHES': 3,
   'HEALTH': 4,
   'TRANSPORT': 5,
-  'OTHERS':6
+  'OTHER':6
   
 };
 

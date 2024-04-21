@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'dart:html';
 import 'package:expense/configs/constants.dart';
 import 'package:expense/controllers/entriesController.dart';
 import 'package:expense/models/entriesModel.dart';
@@ -9,13 +9,18 @@ import 'package:expense/views/customText.dart';
 import 'package:expense/viewsPages/onPressed.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart'as http;
-EntriesController entriesController=Get.put(EntriesController());
+import 'package:http/http.dart' as http;
+
+
+
+EntriesController entriesController = Get.put(EntriesController());
+
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    getEntries();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -46,7 +51,7 @@ class Home extends StatelessWidget {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        //  search
+                        //  Implement search functionality
                       },
                     ),
                   ),
@@ -65,50 +70,33 @@ class Home extends StatelessWidget {
             ),
             Container(
               height: 300,
-              child: BarGraph(),
+              child: BarGraph(), // Assuming BarGraph is implemented elsewhere
             ),
             SizedBox(height: 20),
             // Transaction entries
-            // Implement the transaction entries widget here
-            customText(
-              label: '2/24/2023',
-              fontSize: 12,
-            ),
-            SizedBox(height: 15),
-           
+            Obx(
+  () => Column(
+    children: List.generate(
+      entriesController.entriesList.length,
+      (index) {
+        final entry = entriesController.entriesList[index];
+        return Column(
+          children: [
             Entries(
-              imageUrl: "images/cloth.png",
-              titleText:"CLOTHES",
-              subTitleText: "Tshirt",
-              amount: 750,
-              
+              imageUrl: "images/${entry.image}",
+              titleText: entry.categoryName,
+              subTitleText: entry.item,
+              amount: double.parse(entry.amount),
             ),
-            SizedBox(height: 15),
-            Entries(
-              imageUrl: "images/house.png",
-              titleText: "HOUSING",
-              subTitleText: "Rent",
-              amount: 25000,
-            ),
-            SizedBox(height: 15),
-            Entries(
-              imageUrl: "images/food.png",
-              titleText: "FOOD",
-              subTitleText: "fish",
-              amount: 1000,
-            ),
-            SizedBox(height: 30),
-            customText(
-              label: '2/22/2024',
-              fontSize: 12,
-            ),
-            SizedBox(height: 15),
-            Entries(
-              imageUrl: "images/health.png",
-              titleText: "HEALTH",
-              subTitleText: "Surgery",
-              amount: 1000,
-            ),
+            SizedBox(height: 15), // Add space between entries
+          ],
+        );
+      },
+    ),
+  ),
+),
+
+            
             SizedBox(height: 200), // Additional space at the bottom
           ],
         ),
@@ -126,16 +114,19 @@ class Home extends StatelessWidget {
       ),
     );
   }
-   Future<void>getEntries()async{
-    http.Response response;
-       response=await http.get(Uri.parse("https://sanerylgloann.co.ke/ExpenseEase/readEntries.php"));
-    if (response.statusCode==200){
-    var serverResponse=json.decode(response.body);
-    var entriesStatus=serverResponse['success'];
-    var entrieslist=entriesStatus.Map((entries)=>Categori.fromJson(entries)).toList();
-    entriesController.updateEntriesList(entrieslist);}
-    else{
-      print("server error&{response.statusCode}");
+
+  Future<void> getEntries() async {
+    try {
+      final response = await http.get(Uri.parse("https://sanerylgloann.co.ke/ExpenseEase/readEntries.php"));
+      if (response.statusCode == 200) {
+        final serverResponse = json.decode(response.body);
+        final entries = (serverResponse['userdata'] as List).map((entry) => Entry.fromJson(entry)).toList();
+        entriesController.updateEntriesList(entries);
+      } else {
+        print("Server error: ${response.statusCode}");
+      }
+    } catch (e) {
+      print("Error fetching entries: $e");
     }
   }
 }

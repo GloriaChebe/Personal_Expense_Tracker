@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
+import 'package:expense/models/entriesModel.dart';
 
 class EntriesController extends GetxController {
-  var entrieslist = [].obs;
+  var entriesList = <Entry>[].obs;
 
-  updateEntriesList(list) {
-    entrieslist.value = list;
+  void updateEntriesList(List<Entry> newList) {
+    entriesList.clear();
+    entriesList.addAll(newList);
   }
 }
