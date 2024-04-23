@@ -126,16 +126,14 @@ class _PressedPageState extends State<PressedPage> {
                 ElevatedButton(
                   onPressed: () {
                     serverSignup();
-                    // Save functionality
-                    // Example: You can access entered values using userItemController.text and userAmountController.text
+                    
                   },
                   child: Text("Save"),
                 ),
                 SizedBox(width: 50),
                 ElevatedButton(
                   onPressed: () {
-                    // Cancel functionality
-                    // Example: You might want to clear the text fields here
+                    
                     userItemController.clear();
                     userAmountController.clear();
                   },

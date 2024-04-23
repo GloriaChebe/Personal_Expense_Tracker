@@ -1,15 +1,17 @@
-
 import 'package:expense/configs/constants.dart';
+import 'package:expense/controllers/userController.dart';
 import 'package:expense/views/customText.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final userController = Get.find<CurrentUserController>();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor.withOpacity(0.8),
@@ -30,15 +32,15 @@ class ProfilePage extends StatelessWidget {
               backgroundImage: AssetImage('/images/glori.jpg'),
             ),
             const SizedBox(height: 20),
-            itemProfile('Username ', 'Gloria', CupertinoIcons.person),
+            itemProfile('Username ', userController.user.value?.userName??"User", CupertinoIcons.person),
             const SizedBox(height: 10),
-            itemProfile('Phone', '0745881266', CupertinoIcons.phone),
-            const SizedBox(height: 10),
-            itemProfile(
-                'Address', '116, kericho', CupertinoIcons.location),
+            itemProfile('Phone', userController.user.value?.phoneNo??"Uknown", CupertinoIcons.phone),
             const SizedBox(height: 10),
             itemProfile(
-                'Email', 'gloriachebet024@gmail.com', CupertinoIcons.mail),
+                'Address', userController.user.value?.address??"Uknown", CupertinoIcons.location),
+            const SizedBox(height: 10),
+            itemProfile(
+                'Email', userController.user.value?.email??"Uknown", CupertinoIcons.mail),
             const SizedBox(
               height: 20,
             ),

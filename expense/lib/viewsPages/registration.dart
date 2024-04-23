@@ -93,7 +93,7 @@ class RegistrationPage extends StatelessWidget {
                     customTextField(
                       userFieldController: addressController,
                       hint:"Address ie(116,Kericho)",
-                      hideText: true,
+                      
                       icon: Icons.location_city,
                     ),
                     SizedBox(

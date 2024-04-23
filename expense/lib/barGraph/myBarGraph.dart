@@ -25,7 +25,7 @@ class MyBarGraph extends StatelessWidget {
             rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
             bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: true,getTitlesWidget: getBottomTitles,))
         ),
-        maxY: 1000,
+        maxY: 10000,
         minY: 0,
       
         barGroups: myBarData.barData.map((data) => BarChartGroupData(x: data.x,barRods: [BarChartRodData(toY: data.y,
@@ -49,40 +49,40 @@ fontSize: 14
     );
     Widget text;
     switch (value.toInt()) {
-      case 0:
+      case 6:
        text=const Text("Sun",style: style,) ;
         break;
-        case 1:
+        case 0:
       text = const Text(
         "Mon",
         style: style,
       );
       break;
-      case 2:
+      case 1:
       text = const Text(
         "Tue",
         style: style,
       );
       break;
-      case 3:
+      case 2:
       text = const Text(
         "Wed",
         style: style,
       );
       break;
-      case 4:
+      case 3:
       text = const Text(
         "Thur",
         style: style,
       );
       break;
-      case 5:
+      case 4:
       text = const Text(
         "Fri",
         style: style,
       );
       break;
-      case 6:
+      case 5:
       text = const Text(
         "Sat",
         style: style,

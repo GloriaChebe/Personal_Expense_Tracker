@@ -5,6 +5,6 @@ class UserController extends GetxController{
 
 final userList={}.obs;
 updateUserList(list)=>userList.value=list;
-updateLoadingUser (loading)=>loadingUser.value= loading;
+updateLoadingUser (loading)=>loadingUser.value=loading;
 
 }
