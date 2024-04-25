@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:expense/views/customText.dart';
 import 'package:expense/views/customTextField.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart'as http;
 
   TextEditingController categoryIDController = TextEditingController();
@@ -125,7 +127,10 @@ class _PressedPageState extends State<PressedPage> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    serverSignup();
+                    serverRecords();
+                    print("recorded successfully!");
+                    gotoHome();
+                    
                     
                   },
                   child: Text("Save"),
@@ -133,6 +138,7 @@ class _PressedPageState extends State<PressedPage> {
                 SizedBox(width: 50),
                 ElevatedButton(
                   onPressed: () {
+                    gotoHome();
                     
                     userItemController.clear();
                     userAmountController.clear();
@@ -146,7 +152,7 @@ class _PressedPageState extends State<PressedPage> {
       ),
     );
   }
-    Future<void> serverSignup() async {
+    Future<void> serverRecords() async {
     http.Response response;
     var body={
       'categoryID':categoryToIdMap [selectedCategory]!.toString(),
@@ -168,4 +174,7 @@ class _PressedPageState extends State<PressedPage> {
       } 
     }
 }
+void gotoHome() {
+    Get.offAllNamed("/homepage");
+  }
 }

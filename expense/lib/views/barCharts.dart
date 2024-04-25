@@ -2,25 +2,15 @@ import 'package:expense/models/entriesModel.dart';
 import 'package:flutter/material.dart';
 import 'package:expense/barGraph/myBarGraph.dart';
 
-// class BarGraph extends StatefulWidget {
- 
-
-//   @override
-//   State<BarGraph> createState() => _BarGraphState();
-// }
-
-class BarGraph extends StatelessWidget {
-   const BarGraph( {super.key, required this.entries,});
+class BarGraph extends StatefulWidget {
+  const BarGraph( {super.key, required this.entries,});
   final List<Entry> entries;
-  // List<double> weeklyExpense = [
-  //   70,
-  //   400,
-  //   100,
-  //   140,
-  //   880.8,
-  //   900,
-  //   450,
-  // ];
+
+  @override
+  State<BarGraph> createState() => _BarGraphState();
+}
+
+class _BarGraphState extends State<BarGraph> {
 
   List <double> _buildGraphEntries(){
    Map<int, double> dailyTotals = <int, double>{
@@ -32,7 +22,17 @@ class BarGraph extends StatelessWidget {
     5: 0.0,
     6: 0.0,
   };
-   for (final entry in entries) {
+  List<double> weeklyExpense = [
+    70,
+    400,
+    100,
+    140,
+    880.8,
+    900,
+    450,
+  ];
+
+   for (final entry in widget.entries) {
     // Get the day of the week (0 = Monday, 6 = Sunday)
     final dayOfWeek = entry.createdAt.weekday;
     print("day: $dayOfWeek == > ${entry.amount}");
@@ -43,18 +43,17 @@ class BarGraph extends StatelessWidget {
 
   // Create a list of daily totals in the order Mon-Sun
   final dailyTotalsList = [
+    dailyTotals[0]!,
     dailyTotals[1]!,
     dailyTotals[2]!,
     dailyTotals[3]!,
     dailyTotals[4]!,
     dailyTotals[5]!,
     dailyTotals[6]!,
-    dailyTotals[7]!,
   ];
-
-  print(dailyTotalsList);
+ 
+print("Here: $dailyTotalsList");
   return dailyTotalsList;
-  
   }
 
   @override

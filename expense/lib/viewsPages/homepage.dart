@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:html';
+
 import 'package:expense/configs/constants.dart';
 import 'package:expense/controllers/entriesController.dart';
 import 'package:expense/controllers/userController.dart';
@@ -66,12 +66,12 @@ class Home extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                customText(label: "Total Expenditure: Ksh 2350"),
+               Obx(() =>  customText(label: "Total Expenditure: Ksh ${entriesController.amount.value}")),
               ],
             ),
             Container(
               height: 300,
-              child:Obx(() =>  BarGraph(entries: entriesController.entriesList.value), ),
+              child:Obx(() =>   BarGraph(entries: entriesController.entriesList.value, ),),
             ),
             // _buildChart(context),
             SizedBox(height: 20),
@@ -85,7 +85,7 @@ class Home extends StatelessWidget {
                     return Column(
                       children: [
                         Entries(
-                          imageUrl: "images/${entry.image}",
+                          imageUrl: "assets/images/${entry.image}",
                           titleText: entry.categoryName,
                           subTitleText: entry.item,
                           amount: double.parse(entry.amount),

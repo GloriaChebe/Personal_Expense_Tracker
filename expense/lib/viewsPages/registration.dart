@@ -49,7 +49,7 @@ class RegistrationPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                              
-                                 Image.asset("images/logo.png",height: 120,),
+                                 Image.asset("assets/images/logo.png",height: 120,),
                                
                         customText(
                               label: "REGISTER HERE!",

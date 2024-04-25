@@ -14,7 +14,7 @@ HomeController homeController = Get.put(HomeController());
 class HomePage extends StatelessWidget {
   final List<Widget> screens = [
     Home(),
-    CategoriesPage(),
+   // CategoriesPage(),
     SettingsPage(),
     ProfilePage(),
   ];
@@ -34,11 +34,11 @@ class HomePage extends StatelessWidget {
             iconColor: appBlackColor,
             text: 'Home',
           ),
-          GButton(
-            icon: Icons.category,
-            iconColor: appBlackColor,
-            text: 'Categories',
-          ),
+          // GButton(
+          //   icon: Icons.category,
+          //   iconColor: appBlackColor,
+          //   text: 'Categories',
+          // ),
           GButton(
             icon: Icons.settings,
             iconColor: appBlackColor,

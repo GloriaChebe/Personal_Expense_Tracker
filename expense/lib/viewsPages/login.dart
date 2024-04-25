@@ -3,7 +3,7 @@ import 'package:expense/controllers/userController.dart';
 import 'package:expense/controllers/userListController.dart';
 import 'package:expense/models/usersModel.dart';
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
+// import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:expense/views/customButton.dart';
@@ -19,7 +19,7 @@ class login extends StatelessWidget {
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
   final Prefs_prefs = Prefs();
-  var store=GetStorage();
+  // var store=GetStorage();
    final userController = Get.find<CurrentUserController>();
 
   @override
@@ -54,7 +54,7 @@ class login extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset("images/logo.png", height: 120,),
+                          Image.asset("assets/images/logo.png", height: 120,),
                           customText(
                             label: "WELCOME BACK",
                             labelColor: primaryColor,
@@ -136,13 +136,13 @@ class login extends StatelessWidget {
     if (response.statusCode == 200) {
      
       var serverResponse = json.decode(response.body);
-      var userId = ['user_id'];
+      //var userId = ['user_id'];
       int loginStatus = serverResponse['success'];
       if (loginStatus == 1) {
         print(serverResponse);
         userController.user.value = User.fromJson(serverResponse["userdata"][0]);
         print(userController.user.value!.toJson());
-        //await Prefs_prefs.addString('userName', userNameController.text.trim());
+        await Prefs_prefs.addString('userName', userNameController.text.trim());
         //loginController.updateUserId(userID);
             //store.write("userid", userID);
         
