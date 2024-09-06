@@ -1,0 +1,1 @@
+ExpenseEase is a personal expense tracking application that empowers you to take control of your financial wellbeing. With seamless registration and intuitive expense entry, you can gain visibility into your spending habits and make informed decisions.
